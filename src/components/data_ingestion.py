@@ -12,8 +12,9 @@ from dataclasses import dataclass
 # Input to our Data ingestion class will be given through this class 
 @dataclass
 class DataIngestionConfig:
-    train_data_path = os.path.join('artifacts', 'train.csv')
-    test_data_path = os.path.join('artifacts', 'test.csv')
+    # train_data_path = os.path.join('artifacts', 'train.csv')
+    # test_data_path = os.path.join('artifacts', 'test.csv')
+
     raw_data_path = os.path.join('artifacts', 'raw.csv')
 
 
@@ -29,22 +30,21 @@ class DataIngestion:
         #We can read the data from any data source here at this line            
             df = pd.read_csv(r'notebook\data\laptop_data.csv')
             logging.info("Dataset read as pandas DataFrame")
-            os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
+            os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path), exist_ok=True)
 
         # saving the Raw Data 
             df.to_csv(self.ingestion_config.raw_data_path, index=False, header=True)
 
-            logging.info('Train Test Split')
-            train_set, test_set = train_test_split(df, test_size=0.3, random_state=42)
+        #     logging.info('Train Test Split')
+        #     train_set, test_set = train_test_split(df, test_size=0.3, random_state=42)
 
-        # saving the training and testing CSV files 
-            train_set.to_csv(self.ingestion_config.train_data_path, index=False, header=True)
-            test_set.to_csv(self.ingestion_config.test_data_path, index=False, header=True)
+        # # saving the training and testing CSV files 
+        #     train_set.to_csv(self.ingestion_config.train_data_path, index=False, header=True)
+        #     test_set.to_csv(self.ingestion_config.test_data_path, index=False, header=True)
             logging.info('Ingestion of Data Completed')
 
             return (
-                self.ingestion_config.train_data_path,
-                self.ingestion_config.test_data_path
+                self.ingestion_config.raw_data_path
             )
 
         except Exception as e:

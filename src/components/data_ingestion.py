@@ -12,9 +12,6 @@ from dataclasses import dataclass
 # Input to our Data ingestion class will be given through this class 
 @dataclass
 class DataIngestionConfig:
-    # train_data_path = os.path.join('artifacts', 'train.csv')
-    # test_data_path = os.path.join('artifacts', 'test.csv')
-
     raw_data_path = os.path.join('artifacts', 'raw.csv')
 
 

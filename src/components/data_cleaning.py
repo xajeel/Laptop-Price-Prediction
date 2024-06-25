@@ -152,7 +152,7 @@ class DataCleaning:
                 else:
                     df['OpSys'] = df['OpSys'].replace(s, 'Others')
 
-            df.to_csv(self.data_cleaning_config.clean_data_path, index=True, header=True)
+            df.to_csv(self.data_cleaning_config.clean_data_path, index=False, header=True)
 
 
         except Exception as e:

@@ -1,6 +1,5 @@
 import os
 import sys
-from data_cleaning import DataCleaning
 from src.exception import CustomException
 from src.logger import logging
 

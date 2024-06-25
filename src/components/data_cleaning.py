@@ -151,14 +151,17 @@ class DataCleaning:
                     df['OpSys'] = df['OpSys'].replace(s, 'Mac')
                 else:
                     df['OpSys'] = df['OpSys'].replace(s, 'Others')
-
+            
+            
+            df.drop(columns=['hybrid', 'flash'], inplace=True)
             df.to_csv(self.data_cleaning_config.clean_data_path, index=False, header=True)
 
+            return self.data_cleaning_config.clean_data_path
 
         except Exception as e:
             raise CustomException(e,sys)
         
-        return self.data_cleaning_config.clean_data_path
+    
 
 
 if __name__ == '__main__':

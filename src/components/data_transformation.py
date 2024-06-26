@@ -61,9 +61,6 @@ class DataTransformation:
             ])
 
             logging.info('Data Transformation Complete')
-            logging.info('Saving Preprocessed')
-            path = self.data_transformation_config.preprocess_path
-            save_object(save_path=path, best_model=preprocessor)
 
             return preprocessor
 
@@ -89,6 +86,10 @@ class DataTransformation:
         # Combbing the input and Output 
         input_train = np.c_[input_train_arr, np.array(np.log(y_train))]
         input_test = np.c_[input_test_arr, np.array(np.log(y_test))]
+
+        logging.info('Saving Preprocessed')
+        path = self.data_transformation_config.preprocess_path
+        save_object(save_path=path, best_model=preproc)
 
         return (
             input_train,

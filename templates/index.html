@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <title>Laptop Price Estimator</title>
+</head>
+<body>
+
+    <div class="heading">
+        <h1>💻 Laptop Price Estimator</h1>
+    </div>
+
+    <form action="/" method="post">
+
+          <!-- ROW NUMBER 1  -->
+
+        <div class="custom-select">
+
+            <select name="company">
+              <option disabled selected>🌐 Brand Name:</option>
+              {% for opt in option1 %}
+              <option value="{{opt}}">{{opt}}</option>
+              {% endfor %}
+            </select>
+
+            <select name="TypeName">
+                <option disabled selected>👩🏻‍💻 Laptop Type:</option>
+                {% for opt in option2 %}
+                <option value="{{opt}}">{{opt}}</option>
+                {% endfor %}
+              </select>
+
+              <select name="Cpu">
+                <option disabled selected>⚡ Cpu Type:</option>
+                {% for opt in option3 %}
+                <option value="{{opt}}">{{opt}}</option>
+                {% endfor %}
+              </select>
+
+              <input type="number" placeholder="🗂️ Screen(Inches)" name="screensize">
+
+          </div>
+
+          <!-- ROW NUMBER 2 -->
+
+          <div class="custom-select">
+
+            <select name="Ram">
+              <option disabled selected>🔳 Select Ram:</option>
+              {% for opt in option4 %}
+              <option value="{{opt}}">{{opt}}</option>
+              {% endfor %}
+            </select>
+
+            <select name="Gpu">
+                <option disabled selected>⚙️ Select Gpu:</option>
+                {% for opt in option5 %}
+                <option value="{{opt}}">{{opt}}</option>
+                {% endfor %}
+              </select>
+
+              <select name="OS">
+                <option disabled selected>🗃️ Select OS:</option>
+                {% for opt in option6 %}
+                <option value="{{opt}}">{{opt}}</option>
+                {% endfor %}
+              </select>
+
+          </div>
+
+          <!-- ROW NUMBER 3  -->
+
+          <div class="custom-select">
+
+            <input type="number" placeholder="🗂️ Weight(Kg)" name="weight">
+
+            <select name="IPS">
+                <option value="0">📱 Select IPS Screen:</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
+
+              <select name="Touchscreen">
+                <option value="0">💻 Touchscreen:</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
+
+          </div>
+
+          <!-- ROW NUMBER 4 -->
+
+          <div class="custom-select">
+
+            <select name="Resolution">
+              <option disabled selected>🖥️  Screen Resolution:</option>
+              {% for opt in option9 %}
+              <option value="{{opt}}">{{opt}}</option>
+              {% endfor %}
+            </select>
+
+            <select name="SSD">
+                <option value="0" disabled selected>💿 Select SSD:</option>
+                {% for opt in option7 %}
+                <option value="{{opt}}">{{opt}}</option>
+                {% endfor %}
+              </select>
+
+              <select name="HDD">
+                <option value="0" disabled selected>💿 Select HDD:</option>
+                {% for opt in option8 %}
+                <option value="{{opt}}">{{opt}}</option>
+                {% endfor %}
+              </select>
+
+          </div>
+
+          <div class="button">
+            <button type="submit", id="estimate_button">Estimate</button>
+          </div>
+    </form>
+
+    <!-- <div class="prediction">
+      {% if prediction_text %}
+      <h1>Estimated Price: {{prediction_text}} </h1>
+      {% endif %}
+    </div> -->
+
+    {% if prediction_text %}
+    <div class="container">
+      <div class="image">
+        <img src="static\img\pexels-life-of-pix-7974.jpg">
+      
+      </div>
+      <div class="content">
+        <!-- <h3>Brand: {{option10[0]}} </h3> -->
+         <table>
+          <th>Feature Name</th>
+          <th>Specification</th>
+          <tr>
+            <td class="row">
+              <p><b>Brand Name</b></p>
+            </td>
+            <td>
+              <p>{{option10[0]}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="row">
+              <p><b>Ram & Cpu</b></p>
+            </td>
+            <td>
+              <p>{{option10[3]}}GB | {{option10[2]}}</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="row">
+              <p><b>SSD & HDD</b></p>
+            </td>
+            <td>
+              <p>{{option10[10]}}GB | {{option10[11]}}GB </p>
+            </td>
+          </tr>
+          <tr>
+            <td class="row">
+              <p><b>💲Est. Price</b></p>
+            </td>
+            <td>
+              <p>Rs. {{prediction_text}}</p>
+            </td>
+          </tr>
+         </table>
+      </div>
+    </div>
+    {% endif %}
+
+    
+</body>
+</html>

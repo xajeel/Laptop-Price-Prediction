@@ -2,6 +2,8 @@ import os
 import sys
 from src.exception import CustomException
 from src.logger import logging
+from src.utils import save_object
+from config import DataTrnasformationConfig
 
 
 import pandas as pd
@@ -12,15 +14,6 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
-
-@dataclass
-class DataTrnasformationConfig:
-    logging.info('Data Paths')
-    clean_data_path = os.path.join('artifacts', 'clean_data.csv')
-    train_data_path = os.path.join('artifacts', 'train.csv')
-    test_data_path = os.path.join('artifacts', 'test.csv')
-    transform_train_data_path = os.path.join('artifacts', 't_input_train')
-    transform_test_data_path = os.path.join('artifacts', 't_input_test')
 
 class DataTransformation:
     def __init__(self):
@@ -68,6 +61,9 @@ class DataTransformation:
             ])
 
             logging.info('Data Transformation Complete')
+            logging.info('Saving Preprocessed')
+            path = self.data_transformation_config.preprocess_path
+            save_object(save_path=path, best_model=preprocessor)
 
             return preprocessor
 
@@ -94,18 +90,10 @@ class DataTransformation:
         input_train = np.c_[input_train_arr, np.array(np.log(y_train))]
         input_test = np.c_[input_test_arr, np.array(np.log(y_test))]
 
-        pd.DataFrame(input_train).to_csv(self.data_transformation_config.transform_train_data_path, index=False, header=False)
-        pd.DataFrame(input_test).to_csv(self.data_transformation_config.transform_test_data_path, index=False, header=False)
-
         return (
             input_train,
             input_test
         )
-        
-if __name__ == '__main__':
-    transform_object = DataTransformation()
-    transform_object.Data_spliting()
-    transform_object.processed_data()
 
 
 

@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from src.exception import CustomException
 from src.logger import logging
 import re
-from data_ingestion import DataIngestionConfig
+from config import DataCleaningConfig
 
 import pandas as pd
 import numpy as np
@@ -12,12 +12,6 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-
-@dataclass
-class DataCleaningConfig:
-        data_paths = DataIngestionConfig()
-        raw_data = data_paths.raw_data_path
-        clean_data_path = os.path.join('artifacts', 'clean_data.csv')
 
 
 class DataCleaning:
@@ -162,8 +156,3 @@ class DataCleaning:
             raise CustomException(e,sys)
         
     
-
-
-if __name__ == '__main__':
-    final_obj = DataCleaning()
-    final_obj.data_cleaning(final_obj.data_cleaning_config.raw_data)

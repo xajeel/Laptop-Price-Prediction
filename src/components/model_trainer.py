@@ -2,17 +2,14 @@ import os
 import sys
 from src.components.data_transformation import DataTransformation
 from dataclasses import dataclass
-import pickle as pk
 from src.exception import CustomException
+from src.utils import save_object
+from config import ModelTrainerConfig
 
 from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score
-
-@dataclass
-class ModelTrainerConfig:
-    model_path = os.path.join('artifacts', 'model.pkl')
 
 class ModelTrainer:
     def __init__(self):
@@ -33,21 +30,15 @@ class ModelTrainer:
                 test_model_score = r2_score(y_test, y_predict)
                 report[model_name] = test_model_score
             
-            rscore = max(sorted(report.values()))
+            rscore = max(report.values())
+            model_name = list(report.keys())[list(report.values()).index(rscore)]
+            best_model = models[model_name]
+            model_save_path = self.model_trainer_config.model_path
+            save_object(save_path=model_save_path, best_model=best_model)
+
             if rscore < 0.6:
                 raise CustomException('No Model Found with r2 SCore greater than 0.6')
-            else:
-                return rscore
 
         except Exception as e:
             raise CustomException(e, sys)
-
-if __name__ == '__main__':
-    model_object = ModelTrainer()
-    data_transformation_object = DataTransformation()
-    input_train, input_test = data_transformation_object.processed_data()
-    model_output = model_object.model_trainer(x_train=input_train[:,:-1], y_train=input_train[:,-1], x_test=input_test[:,:-1], y_test=input_test[:,-1])
-
-    print(model_output)
-
 

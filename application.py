@@ -34,7 +34,8 @@ def screen_dpi(a, b):
 
 # Flask App
 
-app = Flask(__name__)
+application = Flask(__name__)
+app = application
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -87,4 +88,4 @@ def index():
                            option10=input_data)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0")

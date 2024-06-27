@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import pickle as pk
 
+
 # Load the trained model and preprocessor
 model = pk.load(open(r"C:\Users\sajeel\Desktop\Data Science Complete\project1\artifacts\model.pkl", "rb"))
 preprocess = pk.load(open(r"C:\Users\sajeel\Desktop\Data Science Complete\project1\artifacts\preprocess.pkl", "rb"))

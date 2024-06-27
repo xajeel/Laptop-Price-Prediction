@@ -10,8 +10,10 @@ The project follows a modular approach, divided into distinct stages:
     * Exploratory Data Analysis (EDA)
     * Data Cleaning
     * Data Transformation
+
 2. **Model Development:**
     * Model selection, training, and evaluation
+    
 3. **Web Application:**
     * Flask backend for handling user input and model prediction
     * HTML and CSS for user interface

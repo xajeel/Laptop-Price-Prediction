@@ -1,5 +1,3 @@
-Here's the updated content for your README.md file using the information you provided:
-
 ## Laptop Price Prediction Project
 
 This project predicts laptop prices based on their specifications. It offers a modular and reusable package for future development. Additionally, a web application allows users to easily interact with the model.

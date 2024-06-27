@@ -1,5 +1,6 @@
 from setuptools import find_packages, setup
 
+
 def get_requirements(file_path):
     """
     This function will return the list of requirements
